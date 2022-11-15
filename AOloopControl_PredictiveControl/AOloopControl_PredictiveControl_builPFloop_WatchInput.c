@@ -12,7 +12,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 /* ===============================================================================================
  */
@@ -112,7 +114,7 @@ imageID AOloopControl_PredictiveControl_builPFloop_WatchInput(
     char outmaskfname[200];
     long IDinmask;
 
-    PROCESSINFO *processinfo;
+    PROCESSINFO *processinfo = NULL;
 
     if(data.processinfo == 1)
     {

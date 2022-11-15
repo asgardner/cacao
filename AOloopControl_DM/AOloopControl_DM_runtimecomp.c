@@ -18,7 +18,9 @@
 /* ===============================================================================================
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 #include <malloc.h>
 
@@ -565,7 +567,7 @@ int AOloopControl_DM_CombineChannels_RUN()
     long      ch;
     char      name[200];
     long      cnt = 0;
-    long long cntold;
+    long long cntold = 0;
     long long cntsumold;
     long long cntsum;
     imageID   IDvolt;
@@ -578,9 +580,9 @@ int AOloopControl_DM_CombineChannels_RUN()
     int   vOK;
     float maxmaxvolt = 150.0;
     //    char errstr[200];
-    uint64_t sizexyDMout;
+    uint64_t sizexyDMout = 0;
     imageID  IDtmpoutdm;
-    uint64_t sizexywfsref;
+    uint64_t sizexywfsref = 0;
     imageID  IDtmpoutref;
     long     cntch;
 
@@ -626,6 +628,7 @@ int AOloopControl_DM_CombineChannels_RUN()
     char dm2dm_outdisp[FUNCTION_PARAMETER_STRMAXLEN];
     if(dm2dm_mode == 1)
     {
+        #pragma GCC diagnostic ignored "-Wstringop-truncation"
         strncpy(
             dm2dm_DMmodes,
             functionparameter_GetParamPtr_STRING(&fps, ".option.dm2dm_DMmodes"),

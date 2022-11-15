@@ -8,7 +8,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -237,7 +239,7 @@ AOloopControl_computeCalib_ProcessZrespM_medianfilt(long        loop,
     char     fname[200];
     char     zrname[200];
     long     kmat;
-    long     sizexWFS, sizeyWFS, sizeWFS;
+    long     sizexWFS = 0, sizeyWFS = 0, sizeWFS = 0;
     imageID *IDzresp_array;
     long     ii;
     double   fluxpos, fluxneg;
@@ -254,8 +256,8 @@ AOloopControl_computeCalib_ProcessZrespM_medianfilt(long        loop,
     //     float lim, rms;
     //     double tmpv;
     long   NBmatlim = 3;
-    long   NBpoke, poke;
-    double tot, totm;
+    long   NBpoke = 0, poke = 0;
+    double tot = 0.0, totm = 0.0;
 
     if(sprintf(fname, "./zresptmp/%s_nbiter.txt", zrespm_name) < 1)
     {
@@ -743,7 +745,7 @@ errno_t AOloopControl_computeCalib_mkCM_RUN()
 
     float SVDlim = functionparameter_GetParamValue_FLOAT64(&fps, ".SVDlim");
 
-    long GPUmode = functionparameter_GetParamValue_INT64(&fps, ".GPUmode");
+    // long GPUmode = functionparameter_GetParamValue_INT64(&fps, ".GPUmode");
 
     char respMname[FUNCTION_PARAMETER_STRMAXLEN + 1];
     strncpy(respMname,
@@ -751,6 +753,7 @@ errno_t AOloopControl_computeCalib_mkCM_RUN()
             FUNCTION_PARAMETER_STRMAXLEN);
 
     char outdirname[FUNCTION_PARAMETER_STRMAXLEN];
+    #pragma GCC diagnostic ignored "-Wstringop-truncation"
     strncpy(outdirname,
             functionparameter_GetParamPtr_STRING(&fps, ".conf.datadir"),
             FUNCTION_PARAMETER_STRMAXLEN);

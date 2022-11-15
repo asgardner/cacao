@@ -354,6 +354,7 @@ static errno_t customCONFcheck()
                 char datadir[FUNCTION_PARAMETER_STRMAXLEN];
                 char fname[FUNCTION_PARAMETER_STRMAXLEN];
 
+                #pragma GCC diagnostic ignored "-Wstringop-truncation"
                 strncpy(datadir,
                         functionparameter_GetParamPtr_STRING(&FPS_zRMacqu,
                                 ".conf.datadir"),
@@ -531,8 +532,8 @@ static errno_t compute_function()
         //
         // if BlockNB < 0 : do all blocks
         // if BlockNB >= 0 : only update single block (untested)
-        int MaskMode = 0;
-        int BlockNB  = -1;
+        // int MaskMode = 0;
+        // int BlockNB  = -1;
 
         // full set of DM actuators to be controlled
         //

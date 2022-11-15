@@ -149,6 +149,7 @@ int AOloopControl_DM_dmdispcombstatus(long DMindex)
         attron(A_BOLD);
         print_header(" PRESS ANY KEY TO STOP MONITOR ", '-');
         attroff(A_BOLD);
+        #pragma GCC diagnostic ignored "-Wformat"
         printw("monitor sample %ld\n", mcnt);
         printw("\n");
 

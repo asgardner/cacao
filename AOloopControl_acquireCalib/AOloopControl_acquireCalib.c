@@ -24,7 +24,9 @@
 // Application to which module belongs
 #define MODULE_APPLICATION "cacao"
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 /* ===============================================================================================
  */
@@ -2733,6 +2735,7 @@ errno_t AOcontrolLoop_acquireCalib_Measure_WFS_linResponse_RUN()
     long NBinnerCycle =
         functionparameter_GetParamValue_INT64(&fps, ".NBinnerCycle");
 
+    #pragma GCC diagnostic ignored "-Wstringop-truncation"
     char pokeC_filename[FUNCTION_PARAMETER_STRMAXLEN];
     strncpy(pokeC_filename,
             functionparameter_GetParamPtr_STRING(&fps, ".fn_pokeC"),
@@ -5119,7 +5122,7 @@ imageID AOloopControl_acquireCalib_RMseries_deinterlace(
 )
 {
     imageID IDout;
-    long    xsizeWFS, ysizeWFS, sizeDM;
+    long    xsizeWFS = 0, ysizeWFS = 0, sizeDM = 0;
     long    xsize, ysize, zsize, xysize;
     long    rmCindex;
 

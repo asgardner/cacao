@@ -6,7 +6,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -379,6 +381,7 @@ int AOloopControl_aorun_RUN()
     long loop = functionparameter_GetParamValue_INT64(&fps, ".AOloopindex");
 
     char snameWFS[FUNCTION_PARAMETER_STRMAXLEN];
+    #pragma GCC diagnostic ignored "-Wstringop-truncation"
     strncpy(snameWFS,
             functionparameter_GetParamPtr_STRING(&fps, ".sn_wfs"),
             FUNCTION_PARAMETER_STRMAXLEN);

@@ -270,20 +270,15 @@ static errno_t make_master_turbulence_screen(const char *ID_name1,
 
 
 
-long make_DMturbcube(char    *IDoutname,
+long make_DMturbcube(char    *IDoutname __attribute__((unused)),
                      uint32_t xsize,
                      uint32_t ysize,
-                     uint32_t NBsamples)
+                     uint32_t NBsamples __attribute__((unused)))
 {
     uint32_t imsize = 2048;
 
     uint64_t xysize = xsize;
     xysize *= ysize;
-
-
-    uint32_t zsize = NBsamples;
-
-
     imageID IDs1;
     imageID IDs2;
     load_fits("turbscreen1.fits", "screen1", 1, &IDs1);
@@ -313,8 +308,8 @@ long make_DMturbcube(char    *IDoutname,
     printf("ARRAY SIZE = %ld %ld\n",
            (long) data.image[IDs1].md[0].size[0],
            (long) data.image[IDs1].md[0].size[1]);
-    uint32_t size_sx = data.image[IDs1].md[0].size[0];
-    uint32_t size_sy = data.image[IDs1].md[0].size[1];
+    // uint32_t size_sx = data.image[IDs1].md[0].size[0];
+    // uint32_t size_sy = data.image[IDs1].md[0].size[1];
 
 
     return RETURN_SUCCESS;

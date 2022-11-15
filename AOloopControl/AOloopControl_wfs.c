@@ -7,7 +7,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 #include <gsl/gsl_blas.h>
 #include <pthread.h>
@@ -452,7 +454,7 @@ imageID AOloopControl_computeWFSresidualimage(long loop, char *IDalpha_name)
     char               imname[200];
     uint32_t          *sizearray;
     long               wfsxsize, wfsysize, wfsxysize;
-    unsigned long long cnt;
+    unsigned long long cnt = 0;
     long               ii;
     imageID            IDalpha;
 

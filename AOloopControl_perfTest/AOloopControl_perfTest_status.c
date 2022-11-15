@@ -9,7 +9,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -235,6 +237,7 @@ errno_t AOloopControl_perfTest_printloopstatus(
         AOconf[loop].AOAutoTune.AUTOTUNE_LIMITS_mcoeff,
         AOconf[loop].AOAutoTune.AUTOTUNE_GAINS_ON);
 
+    #pragma GCC diagnostic ignored "-Wformat"
     printw(
         " TIMIMNG :  lfr = %9.3f Hz    hw lat = %5.3f fr   comp lat = %5.3f "
         "fr  wfs extr lat = %5.3f fr\n",

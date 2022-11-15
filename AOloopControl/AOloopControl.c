@@ -64,7 +64,9 @@
 // Module short description
 #define MODULE_DESCRIPTION "AO loop control"
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST

@@ -7,7 +7,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -308,7 +310,7 @@ errno_t AOloopControl_IOtools_imAlignStream(const char *IDname,
     imageID       IDin, IDref, IDtmp;
     uint32_t      xboxsize, yboxsize;
     uint32_t      xsize, ysize;
-    unsigned long cnt;
+    unsigned long cnt = 0;
 
     imageID IDdark;
 
@@ -422,7 +424,7 @@ errno_t AOloopControl_IOtools_imAlignStream(const char *IDname,
         // find the correlation peak
         float vmax = 0.0;
         long  ID;
-        long  xoffset0, yoffset0;
+        long  xoffset0 = 0L, yoffset0 = 0L;
         ID = image_ID("tmpCorr");
         for(ii = 0; ii < xboxsize; ii++)
             for(jj = 0; jj < yboxsize; jj++)
@@ -629,7 +631,7 @@ imageID AOloopControl_IOtools_stream3Dto2D(const char *in_name,
     uint_fast16_t      ii0, jj0, kk0, ii1, jj1, kk;
     uint_fast16_t      Xindex, Yindex;
     uint_fast16_t      iioffset, jjoffset;
-    unsigned long long cnt;
+    unsigned long long cnt = 0;
     uint32_t          *sizearray;
     uint8_t            datatype;
     char               out0name[200]; // noise-free image, in contrast

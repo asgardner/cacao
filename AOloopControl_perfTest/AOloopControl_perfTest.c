@@ -32,7 +32,9 @@
 // Application to which module belongs
 #define MODULE_APPLICATION "cacao"
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -910,7 +912,7 @@ errno_t AOcontrolLoop_perfTest_TestSystemLatency_RUN()
 
     char   *ptr0;
     char   *ptr;
-    long    kk, kkmax;
+    long    kk, kkmax = 0;
     double *valarray;
     double  tmp;
     long    kkoffset;
@@ -970,6 +972,7 @@ errno_t AOcontrolLoop_perfTest_TestSystemLatency_RUN()
     double *latencyfr =
         functionparameter_GetParamPtr_FLOAT64(&fps, ".out.latencyfr");
 
+    #pragma GCC diagnostic ignored "-Wstringop-truncation"
     char outdirname[FUNCTION_PARAMETER_STRMAXLEN];
     strncpy(outdirname,
             functionparameter_GetParamPtr_STRING(&fps, ".conf.outdir"),
@@ -2753,13 +2756,13 @@ errno_t AOloopControl_perfTest_mkSyncStreamFiles2(char  *datadir,
     double *intarray_end;
     double *dtarray;
 
-    long xysize;
+    long xysize = 0;
 
     double dtoffset;
 
-    long IDout0, IDout1;
-    long xysize0, xysize1;
-    long xsize0, ysize0, xsize1, ysize1;
+    long IDout0 = 0, IDout1 = 0;
+    long xysize0 = 0, xysize1 = 0;
+    long xsize0 = 0, ysize0 = 0, xsize1 = 0, ysize1 = 0;
 
     // double dtlagarray[10]; // maximum 10 streams
     double medianexptimearray[10];

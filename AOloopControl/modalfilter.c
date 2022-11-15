@@ -562,7 +562,7 @@ static errno_t compute_function()
 
     // current control values
     float *mvalDMc = (float *) malloc(sizeof(float) * NBmode);
-    for(uint32_t mi; mi < NBmode; mi++)
+    for(uint32_t mi=0; mi < NBmode; mi++)
     {
         mvalDMc[mi] = 0.0;
     }

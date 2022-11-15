@@ -10,7 +10,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -107,7 +109,7 @@ imageID __attribute__((hot)) AOloopControl_ProcessModeCoefficients(long loop)
     double allaveOLrms;
     double allaveCrms;
     double allaveWFSrms;
-    double allaveWFSnoise;
+    double allaveWFSnoise = 0.0;
     double allavelimFrac;
 
     float   limitblockarray[100];
@@ -129,7 +131,7 @@ imageID __attribute__((hot)) AOloopControl_ProcessModeCoefficients(long loop)
     schedpar.sched_priority = RT_priority;
     sched_setscheduler(0, SCHED_FIFO, &schedpar);
 
-    PROCESSINFO *processinfo;
+    PROCESSINFO *processinfo = NULL;
     if(data.processinfo == 1)
     {
         // CREATE PROCESSINFO ENTRY

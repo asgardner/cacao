@@ -8,7 +8,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -104,7 +106,7 @@ imageID AOloopControl_computeCalib_mkloDMmodes(const char *ID_name,
 {
     imageID IDmask;
     imageID ID, ID0, IDtm, IDem, IDslaved;
-    double  x, y, r, PA, xc1, yc1, totm, offset, rms;
+    double  x, y, r, PA, xc1, yc1, totm, offset = 0, rms;
 
     long NBZ, m;
     long zindex[10];

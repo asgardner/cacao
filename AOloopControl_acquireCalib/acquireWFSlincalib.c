@@ -654,6 +654,7 @@ static errno_t customCONFcheck()
                 {
                     char fnameRMDMmask[FUNCTION_PARAMETER_STRMAXLEN];
 
+                    #pragma GCC diagnostic ignored "-Wstringop-truncation"
                     strncpy(fnameRMDMmask,
                             functionparameter_GetParamPtr_STRING(data.fpsptr, ".sn_RMDMmask"),
                             FUNCTION_PARAMETER_STRMAXLEN);

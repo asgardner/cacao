@@ -19,7 +19,9 @@
 // Application to which module belongs
 #define MODULE_APPLICATION "cacao"
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -1037,6 +1039,7 @@ errno_t AOcontrolLoop_computeCalib_ComputeCM_FPCONF()
                     char datadir[FUNCTION_PARAMETER_STRMAXLEN];
                     char fname[FUNCTION_PARAMETER_STRMAXLEN];
 
+                    #pragma GCC diagnostic ignored "-Wstringop-truncation"
                     strncpy(
                         datadir,
                         functionparameter_GetParamPtr_STRING(&FPS_zRMacqu,

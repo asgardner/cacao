@@ -6,7 +6,9 @@
  * new code in acquireWFS
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -685,9 +687,9 @@ errno_t AOcontrolLoop_IOtools_acquireWFSloop_RUN()
 
     processinfo->loopcntMax = -1; // max number of iterations. -1 if infinite
 
-    float          *arrayftmp;
-    unsigned short *arrayutmp;
-    signed short   *arraystmp;
+    float          *arrayftmp = NULL;
+    unsigned short *arrayutmp = NULL;
+    signed short   *arraystmp = NULL;
 
     // long    imWaitTimeAvecnt = 0;
     // long    imWaitTimeAvecnt0 = 1000;

@@ -341,8 +341,8 @@ int AOloopControl_DM_dmturb(long        DMindex,
     struct timespec tdiff1;
     double          tdiff1v;
 
-    float screen0_X;
-    float screen0_Y;
+    float screen0_X = 0.0f;
+    float screen0_Y = 0.0f;
     long  ii, jj, ii1;
     float x, y;
     float xpix, ypix;
@@ -376,7 +376,7 @@ int AOloopControl_DM_dmturb(long        DMindex,
     int    turbON;
     long   IDout;
     double dX, dY;
-    double wspeedx, wspeedy;
+    double wspeedx = 0.0, wspeedy = 0.0;
     double RMSvaltot;
     long   RMSvaltotcnt;
 

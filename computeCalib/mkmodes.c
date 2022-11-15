@@ -7,7 +7,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 // uncomment for test print statements to stdout
 //#define _PRINT_TEST
@@ -84,7 +86,7 @@ errno_t mk_ZernikeFourier_modal_basis(uint32_t msizex,
                                       float    deltaCPA,
                                       double   xc,
                                       double   yc,
-                                      double   r0,
+                                      double   r0 __attribute__((unused)),
                                       double   r1,
                                       IMGID   *imgZFmodes)
 {
@@ -173,7 +175,7 @@ errno_t mk_ZernikeFourier_modal_basis(uint32_t msizex,
 
     // First NBZ modes are Zernike modes
     //
-    for(uint32_t k = 0; k < NBZ; k++)
+    for(int32_t k = 0; k < NBZ; k++)
     {
         data.image[IDmfcpa].array.F[k] = zcpa[k];
         for(uint32_t ii = 0; ii < msizex; ii++)
@@ -291,19 +293,19 @@ errno_t modes_mask_normalize(IMGID imgmodeC, IMGID imgmask)
 
 
 
-imageID AOloopControl_computeCalib_mkModes_new(const char *ID_name,
-        uint32_t    msizex,
-        uint32_t    msizey,
-        float       CPAmax,
-        float       deltaCPA,
-        double      xc,
-        double      yc,
-        double      r0,
-        double      r1,
-        int         MaskMode,
-        int         BlockNB,
-        float       SVDlim,
-        char       *outdir)
+imageID AOloopControl_computeCalib_mkModes_new(const char *ID_name __attribute__((unused)),
+        uint32_t    msizex __attribute__((unused)),
+        uint32_t    msizey __attribute__((unused)),
+        float       CPAmax __attribute__((unused)),
+        float       deltaCPA __attribute__((unused)),
+        double      xc __attribute__((unused)),
+        double      yc __attribute__((unused)),
+        double      r0 __attribute__((unused)),
+        double      r1 __attribute__((unused)),
+        int         MaskMode __attribute__((unused)),
+        int         BlockNB __attribute__((unused)),
+        float       SVDlim __attribute__((unused)),
+        char       *outdir __attribute__((unused)))
 {
     DEBUG_TRACE_FSTART();
 
@@ -415,8 +417,8 @@ imageID AOloopControl_computeCalib_mkModes(const char *ID_name,
     imageID IDmask;
 
     imageID  IDzrespM;
-    uint32_t wfsxsize, wfsysize;
-    uint64_t wfssize;
+    uint32_t wfsxsize = 0, wfsysize = 0;
+    uint64_t wfssize = 0;
 
     imageID ID2b;
 

@@ -7,7 +7,9 @@
  *
  */
 
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif
 
 #include <malloc.h>
 #include <math.h>
@@ -1189,7 +1191,7 @@ int AOloopControl_RTstreamLOG_saveloop(int loop, char *dirname)
         AOconf[loop].RTSLOGarray[thd].tActive = 0;
     }
 
-    PROCESSINFO *processinfo;
+    PROCESSINFO *processinfo = NULL;
     if(data.processinfo == 1)
     {
         // CREATE PROCESSINFO ENTRY
@@ -1262,7 +1264,7 @@ int AOloopControl_RTstreamLOG_saveloop(int loop, char *dirname)
 
     printf("\n");
 
-    long double t0; // time reference for differential timer
+    long double t0 = 0L; // time reference for differential timer
 
     if(data.processinfo == 1)
     {

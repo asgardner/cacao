@@ -342,9 +342,9 @@ static errno_t compute_function()
     }
 
     // initialize camera averaging arrays if not already done
-    float          *arrayftmp;
-    unsigned short *arrayutmp;
-    signed short   *arraystmp;
+    float          *arrayftmp = NULL;
+    unsigned short *arrayutmp = NULL;
+    signed short   *arraystmp = NULL;
     if(WFSatype == _DATATYPE_FLOAT)
     {
         arrayftmp = (float *) malloc(sizeof(float) * sizeWFS);
