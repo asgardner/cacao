@@ -568,8 +568,8 @@ int AOloopControl_DM_CombineChannels_RUN()
     char      name[200];
     long      cnt = 0;
     long long cntold = 0;
-    long long cntsumold;
-    long long cntsum;
+    long long cntsumold = 0;
+    long long cntsum = 0;
     imageID   IDvolt;
     double    ave;
     uint64_t  sizexy;
